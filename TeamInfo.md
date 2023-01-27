@@ -5,9 +5,9 @@
 |   Info      |        Description     |
 | ----------- | ---------------------- |
 | TeamID      |        Team-111        |
-| TeamName    |        GroupProject    |
-| Captain     |                        |
-| Captain     |                        |
+| TeamName    |        GroupRocket     |
+| Captain     |       Dimple Patel     |
+| Captain     |   dimple2@illinois.edu |
 | Member1     |        Dimple Patel    |
 | Member1     |   dimple2@illinois.edu |
 | Member2     |      Riley Morris      |

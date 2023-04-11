@@ -33,10 +33,6 @@ app.get('/', function(req, res) {
 });
 
 
-app.get('/success', function(req, res) {
-	res.send({'message': 'You have done it!'});
-});
-
 // this code is executed when the user presses the submit form button
 app.get('/login', function(req, res) {
         res.render('login', { title: 'Login Page' });
@@ -85,6 +81,26 @@ console.log(sql_login);
 });
 
 
+app.post('/delete-account', function(req, res) {
+        var sql_del_login = `delete from login where UserId = '${global_userid}'`;
+        var sql_del_users = `delete from users where UserId = '${global_userid}'`;
+
+
+console.log(sql_del_login);
+  connection.query(sql_del_login, function(err, result) {
+    if (err) {
+      res.send(err)
+      return;
+    }
+  });
+  connection.query(sql_del_users, function(err, result) {
+    if (err) {
+      res.send(err)
+      return;
+    }
+    res.redirect('/');
+  });
+});
 
 
 app.listen(80, function () {

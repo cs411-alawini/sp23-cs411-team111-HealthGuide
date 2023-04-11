@@ -52,6 +52,10 @@ app.get('/userpage', function(req, res) {
 	res.render('userpage', { title: 'User Page' });
 });
 
+app.get('/update-account', function(req, res) {
+        res.render('update-account', { title: 'Account Update Page' });
+});
+
 
 app.post('/signup-info', function(req, res) {
 	var username = req.body.username;
@@ -102,6 +106,31 @@ console.log(sql_del_login);
   });
 });
 
+
+app.post('/update-info', function(req, res) {
+        var password = req.body.password;
+        var age = req.body.age;
+        var gender = req.body.gender;
+        var country = req.body.country;
+
+        var sql_login = `UPDATE login SET password = '${password}' WHERE UserID = '${global_userid}'`;
+        var sql_users = `UPDATE users SET age = '${age}', gender = '${gender}', country = '${country}' WHERE UserID = '${global_userid}'`;
+
+console.log(sql_login);
+  connection.query(sql_users, function(err, result) {
+    if (err) {
+      res.send(err)
+      return;
+    }
+  });
+  connection.query(sql_login, function(err, result) {
+    if (err) {
+      res.send(err)
+      return;
+    }
+    res.redirect('/userpage');
+  });
+});
 
 app.listen(80, function () {
 	console.log('Node app is running on port 80');

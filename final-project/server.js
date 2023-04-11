@@ -34,8 +34,29 @@ app.get('/', function(req, res) {
 
 
 // this code is executed when the user presses the submit form button
-app.get('/login', function(req, res) {
-        res.render('login', { title: 'Login Page' });
+app.post('/login', function(req, res) {
+        var username = req.body.username;
+	var password = req.body.password;
+	console.log(username);
+	console.log(password);         
+
+        var sql = `SELECT * FROM login WHERE Username = '${username}' AND Password = '${password}'`;
+
+        connection.query(sql, function(err, result) {
+           console.log(result);
+           if (err) {
+             res.send(err)
+             return;
+           } else if (result.length > 0) {
+	     result.forEach(function(data) {
+	       global_username = data.Username;
+	       global_userid = data.UserId;
+	     });
+             res.render('home', { title: 'Home Page'});
+           } else {
+	     res.render('index', { title: 'Sign In Page'});
+	   }
+         });
 });
 
 app.get('/signin', function(req, res) {

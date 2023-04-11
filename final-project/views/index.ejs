@@ -12,8 +12,14 @@
     <div class="container mt-4">
       <div class = "card>
 	<div class="card-body">
-	  <h2> Welcome to the illness page </h2>
-	  <form action="login">
+	  <h2> Login or Sign Up </h2>
+	  <form action="login" method = "POST">
+	    <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control col-lg-9" id="username" aria-describedby="emailHelp" placeholder="Enter Username" name="username">
+	      <label for="password">Password</label>
+              <input type="text" class="form-control col-lg-9" id="password" aria-describedby="emailHelp" placeholder="Enter Password" name="password">
+            </div>
 	    <button type="submit" class="btn btn-primary">Login</button>
 	  </form>
 	  <form action="signin">

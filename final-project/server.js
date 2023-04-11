@@ -178,7 +178,7 @@ console.log(sql_login);
       res.send(err)
       return;
     }
-    res.redirect('/userpage');
+    res.redirect('/home');
   });
 });
 

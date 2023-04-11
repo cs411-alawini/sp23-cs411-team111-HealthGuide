@@ -57,6 +57,22 @@ app.get('/update-account', function(req, res) {
 });
 
 
+app.post('/search', function(req, res) {
+	var illness = req.body.illness;
+	console.log(illness);
+	var sql = `SELECT * FROM illnesses WHERE Name = '${illness}'`;
+
+	connection.query(sql, function(err, result) {
+ 	   console.log(result);
+	   if (err) {
+ 	     res.send(err)
+ 	     return;
+ 	   } else {
+ 	     res.render('search', { title: 'Search Page', action: 'list', sampleData:result});
+	   }
+ 	 });
+});
+
 app.post('/signup-info', function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;

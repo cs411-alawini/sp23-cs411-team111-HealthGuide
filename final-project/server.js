@@ -12,7 +12,11 @@ var connection = mysql.createConnection({
 connection.connect;
 
 
+var global_username;
+var global_userid;
+
 var app = express();
+
 
 // set up ejs view engine
 
@@ -34,20 +38,53 @@ app.get('/success', function(req, res) {
 });
 
 // this code is executed when the user presses the submit form button
-app.post('/mark', function(req, res) {
-	var UserId = req.body.UserId;
-	var sql = `INSERT INTO users (UserId, Age, Gender, Country) VALUES (1002, 25, 'Male', 'US')`;
-	
+app.get('/login', function(req, res) {
+        res.render('login', { title: 'Login Page' });
+});
 
-console.log(sql);
-  connection.query(sql, function(err, result) {
+app.get('/signin', function(req, res) {
+        res.render('signin', { title: 'Sign In Page' });
+});
+
+app.get('/home', function(req, res) {
+	res.render('home', { title: 'Home Page' });
+});
+
+app.get('/userpage', function(req, res) {
+        console.log(global_username);
+	console.log(global_userid);
+	res.render('userpage', { title: 'User Page' });
+});
+
+
+app.post('/signup-info', function(req, res) {
+	var username = req.body.username;
+	var password = req.body.password;
+	var age = req.body.age;
+	var gender = req.body.gender;
+	var country = req.body.country;
+	global_username = req.body.username;
+	global_userid = 1005;
+	var sql_login = `INSERT INTO login (Username, UserId, Password) VALUES ('${username}', 1005, '${password}')`;
+	var sql_users = `INSERT INTO users (UserId, Age, Gender, Country) VALUES (1005, '${age}', '${gender}', '${country}')`;
+
+console.log(sql_login);
+  connection.query(sql_users, function(err, result) {
     if (err) {
       res.send(err)
       return;
     }
-    res.redirect('/success');
+  });
+  connection.query(sql_login, function(err, result) {
+    if (err) {
+      res.send(err)
+      return;
+    }
+    res.redirect('/home');
   });
 });
+
+
 
 
 app.listen(80, function () {

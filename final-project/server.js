@@ -67,10 +67,23 @@ app.get('/home', function(req, res) {
 	res.render('home', { title: 'Home Page' });
 });
 
-app.get('/userpage', function(req, res) {
+app.post('/userpage', function(req, res) {
         console.log(global_username);
 	console.log(global_userid);
-	res.render('userpage', { title: 'User Page' });
+
+        var sql = `SELECT * FROM users WHERE UserId = '${global_userid}'`;
+
+        connection.query(sql, function(err, result) {
+           console.log(result);
+           if (err) {
+             res.send(err)
+             return;
+           } else {
+	     result[0].Username = global_username;
+	     console.log(result);
+             res.render('userpage', { title: 'User Page', action: 'list', sampleData:result});
+           }
+         });
 });
 
 app.get('/update-account', function(req, res) {

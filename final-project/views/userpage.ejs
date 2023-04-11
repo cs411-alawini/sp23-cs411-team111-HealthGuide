@@ -12,6 +12,23 @@
       <div class = "card>
         <div class="card-body">
           <h2> Account Information </h2>
+	  <%
+            if(sampleData.length > 0)
+            {
+                sampleData.forEach(function(data){
+            %>
+                <p>Username: <%= data.Username %></p>
+                <p>Age: <%= data.Age %></p>
+		<p>Gender: <%= data.Gender %></p>
+                <p>Country: <%= data.Country %></p>
+            <%
+                });
+            } else {
+            %>
+            <h6> No User Data Found </h6>
+            <%
+             }
+           %>
           <form action="update-account">
             <button type="submit" class="btn btn-primary">Update Account Information</button>
           </form>

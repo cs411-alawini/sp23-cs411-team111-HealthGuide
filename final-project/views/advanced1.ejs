@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Advanced Query 1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bottstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div class="container mt-4">
+      <div class = "card>
+        <div class="card-body">
+          <h2> Average Ages </h2>
+          <table class="table table-bordered">
+            <tr>
+                <th>Illness</th>
+                <th>Average Age</th>
+            </tr>
+            <%
+            if(sampleData.length > 0)
+            {
+                sampleData.forEach(function(data){
+            %>
+            <tr>
+                <td><%= data.IllnessName %></td>
+		<td><%= data.avgAge %></td>
+                <td></td>
+            </tr>
+            <%
+                });
+            }
+            else
+            {
+            %>
+            <tr>
+                <td colspan="5">No Data Found</td>
+            </tr>
+            <%
+            }
+            %>
+          </table>
+        </div>
+	<form action="home">
+            <button type="submit" class="btn btn-primary">Home</button>
+         </form>
+      </div>
+    </div>
+  </body>
+</html>

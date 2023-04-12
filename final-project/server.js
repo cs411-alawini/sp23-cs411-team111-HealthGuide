@@ -182,6 +182,44 @@ console.log(sql_login);
   });
 });
 
+app.post('/advanced1', function(req, res) {
+        var sql = `SELECT IllnessName, AVG(Age) as avgAge FROM users u JOIN reviews r using(UserId) GROUP BY IllnessName`;
+
+        connection.query(sql, function(err, result) {
+           console.log(result);
+           if (err) {
+             res.send(err)
+             return;
+           } else {
+             res.render('advanced1', { title: 'Advanced Query 1 Page', action: 'list', sampleData:result});
+           }
+         });
+});
+
+app.post('/advanced2', function(req, res) {
+	var illness = req.body.illness;
+	var lowAge = req.body.lowAge;
+	var highAge = req.body.highAge;
+	var gender = req.body.gender;
+	console.log(illness);
+	console.log(lowAge);
+	console.log(highAge);
+	console.log(gender);
+
+        var sql = `SELECT IllnessName, count(u.UserId) as totalCount FROM users u JOIN reviews r ON (u.userId = r.userId) JOIN illnesses i on (i.Name = r.IllnessName) WHERE (i.Name = '${illness}') AND (u.age >= '${lowAge}') AND (u.age <= '${highAge}') AND (u.Gender = '${gender}') GROUP BY IllnessName`;
+
+        connection.query(sql, function(err, result) {
+           console.log(result);
+           if (err) {
+             res.send(err)
+             return;
+           } else {
+             res.render('advanced2', { title: 'Advanced Query 2 Page', action: 'list', sampleData:result});
+           }
+         });
+});
+
+
 app.listen(80, function () {
 	console.log('Node app is running on port 80');
 });

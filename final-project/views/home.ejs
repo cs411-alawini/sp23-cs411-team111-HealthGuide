@@ -22,6 +22,21 @@
            </div>
            <button type="submit" class="btn btn-primary">Search</button>
          </form>
+	 <form action="advanced1" method="POST">
+           <button type="submit" class="btn btn-primary">Get Average Age by Illness</button>
+         </form>
+	 <form action="advanced2" method="POST">
+	   <div class="form-group">
+             <label for="illness">Illness</label>
+             <input type="text" class="form-control col-lg-9" id="illness" aria-describedby="emailHelp" placeholder="Enter Illness Name" name="illness">
+             <label for="age-range">Age Range</label>
+             <input type="int" class="form-control col-lg-9" id="lowAge" aria-describedby="emailHelp" placeholder="Lower Limit" name="lowAge">
+	     <input type="int" class="form-control col-lg-9" id="highAge" aria-describedby="emailHelp" placeholder="Upper Limit" name="highAge">
+	     <label for="gender">Gender</label>
+             <input type="text" class="form-control col-lg-9" id="gender" aria-describedby="emailHelp" placeholder="Enter Gender" name="gender">
+	   </div>
+           <button type="submit" class="btn btn-primary">Return Count</button>
+         </form>
         </div>
       </div>
     </div>

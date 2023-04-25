@@ -1,34 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Illness Wiki</title>
+    <head>
+  <style>
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 300%;
+}
+.button {
+  background-color: #999999;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+input[type=text], input[type=password], input[type=int] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.container {
+  padding: 16px;
+}
+
+</style>
+</head>
+
+  <body>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bottstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  </head>
-
-  <body>
-    <div class="container mt-4">
-      <div class = "card>
-        <div class="card-body">
-          <h2> Create Sign In Information </h2>
+    
+    <div class="container">
+        <h1>Illness Wiki</h1>
+        <h2> Create Sign In Information </h2>
           <form action="signup-info" method="POST">
-            <div class="form-group">
+            <div class="container">
               <label for="username">Username</label>
-              <input type="text" class="form-control col-lg-9" id="username" aria-describedby="emailHelp" placeholder="Enter Username" name="username">
+              <input type="text" class="form-control col-lg-9" placeholder="Enter Username" id="username" name="username">
               <label for="password">Password</label>
-              <input type="text" class="form-control col-lg-9" id="password" aria-describedby="emailHelp" placeholder="Enter Password" name="password">
-	      <label for="age">Age</label>
-              <input type="int" class="form-control col-lg-9" id="age" aria-describedby="emailHelp" placeholder="Enter Age" name="age">
-	      <label for="gender">Gender</label>
-              <input type="text" class="form-control col-lg-9" id="gender" aria-describedby="emailHelp" placeholder="Enter Gender" name="gender">
-	      <label for="country">Country</label>
-              <input type="text" class="form-control col-lg-9" id="country" aria-describedby="emailHelp" placeholder="Enter Country" name="country">
+              <input type="text" class="form-control col-lg-9" placeholder="Enter Password" id="password" name="password">
+              <label for="age">Age</label>
+              <input type="int" class="form-control col-lg-9" placeholder="Enter Age" id="age" name="age">
+              <label for="gender">Gender</label>
+              <input type="text" class="form-control col-lg-9" placeholder="Enter Gender" id="gender" name="gender">
+              <label for="country">Country</label>
+              <input type="text" class="form-control col-lg-9" placeholder="Enter Country" id="country" name="country">
             </div>
-            <button type="submit" class="btn btn-primary">Create Acccount</button>
+            <button type="submit" class="button">Create Acccount</button>
           </form>
-        </div>
-      </div>
     </div>
   </body>
-</html>

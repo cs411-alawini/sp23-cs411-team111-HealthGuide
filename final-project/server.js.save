@@ -116,27 +116,15 @@ app.post('/signup-info', function(req, res) {
 	global_username = req.body.username;
 	var sql_login = `INSERT INTO login (Username, UserId, Password) VALUES ('${username}', 1005, '${password}')`;
 	var sql_users = `INSERT INTO users (UserId, Age, Gender, Country) VALUES (1005, '${age}', '${gender}', '${country}')`;
-	var sql_userid = `SELECT Max(UserId) as newId FROM users`;
 
 console.log(sql_login);
-  connection.query(sql_userid, function(err, result) {
-    if (err) {
-      res.send(err)
-      return;
-    }
-	console.log(result);
-        console.log(result[0].newId);
-	global_userid = result[0].newId + 1;
-  });
-
   connection.query(sql_users, function(err, result) {
     if (err) {
       res.send(err)
       return;
     }
-	console.log(result.affectedRows);
   });
-
+       var get_userid = `SELECT UserId FROM users WHERE Age = '${age}' and Gender = '${gender}' and Country = '${country}')`;
   connection.query(sql_login, function(err, result) {
     if (err) {
       res.send(err)
@@ -150,6 +138,8 @@ console.log(sql_login);
 app.post('/delete-account', function(req, res) {
         var sql_del_login = `delete from login where UserId = '${global_userid}'`;
         var sql_del_users = `delete from users where UserId = '${global_userid}'`;
+
+
 console.log(sql_del_login);
   connection.query(sql_del_login, function(err, result) {
     if (err) {

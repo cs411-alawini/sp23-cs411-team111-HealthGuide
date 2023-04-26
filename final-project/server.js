@@ -231,7 +231,20 @@ app.post('/advanced2', function(req, res) {
 
 
 app.post('/reviews', function(req, res) {
-	res.render('reviews', { title: 'Review Page' });
+	var illness = req.body.illness;
+        console.log(illness);
+
+        var sql = `CALL ReviewsPage('${global_userid}', '${illness}')`;
+
+        connection.query(sql, function(err, result) {
+           console.log(result);
+           if (err) {
+             res.send(err)
+             return;
+           } else {
+             res.render('reviews', { title: 'Reviews Page', action: 'list', sampleData:result[0]});
+           }
+         });
 });
 
 app.listen(80, function () {
